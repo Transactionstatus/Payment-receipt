@@ -1,208 +1,278 @@
-<!DOCTYPE html>
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Payment Receipt</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transaction Tracker</title>
+
 <style>
-    body {
-        background: #0c0f1a;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #ffffff;
-        display: flex;
-        justify-content: center;
-        padding: 20px;
-    }
+body {
+    background:#f2f4f7;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    display:flex;
+    justify-content:center;
+    padding:20px;
+}
 
-    .receipt {
-        width: 360px;
-        background: #12182b;
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.6);
-        padding: 15px;
-    }
+.card {
+    background:#ffffff;
+    width:100%;
+    max-width:420px;
+    border-radius:14px;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+    padding:18px;
+    color:#1c1e21;
+}
 
-    .alert {
-        background: linear-gradient(135deg, #2b1a1a, #1a0f0f);
-        border: 1px solid #ff8c00;
-        border-radius: 6px;
-        padding: 10px;
-        margin-bottom: 15px;
-        font-size: 13px;
-        line-height: 1.5;
-    }
+/* HEADER */
+.header {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:16px;
+}
 
-    .alert strong {
-        color: #ffae42;
-    }
+.logo {
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#003087;
+    color:#fff;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+}
 
-    .section {
-        border-top: 1px solid #1f2540;
-        padding: 10px 0;
-        font-size: 13px;
-    }
+.header h2 {
+    font-size:16px;
+    margin:0;
+}
 
-    .row {
-        display: flex;
-        justify-content: space-between;
-        margin: 4px 0;
-    }
+/* NOTICE */
+.notice {
+    background:#fff4e5;
+    border:1px solid #ffb020;
+    padding:12px;
+    border-radius:10px;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:16px;
+}
 
-    .label {
-        color: #aab0d0;
-    }
+/* SECTIONS */
+.section {
+    border-top:1px solid #e5e7eb;
+    padding:12px 0;
+    font-size:14px;
+}
 
-    .value {
-        text-align: right;
-    }
+.row {
+    display:flex;
+    justify-content:space-between;
+    margin:6px 0;
+}
 
-    .status-ok {
-        color: #4cff7a;
-        font-weight: bold;
-    }
+.label {
+    color:#6b7280;
+}
 
-    .status-pending {
-        color: #ffcc00;
-        font-weight: bold;
-    }
+.value {
+    font-weight:600;
+}
 
-    .progress {
-        margin-top: 8px;
-        background: #1f2540;
-        border-radius: 10px;
-        height: 8px;
-        overflow: hidden;
-    }
+/* STATUS */
+.approved {
+    color:#16a34a;
+    font-weight:700;
+}
 
-    .progress-bar {
-        width: 15%; /* EDIT PROGRESS HERE */
-        height: 100%;
-        background: linear-gradient(90deg, #ffcc00, #ff9900);
-    }
+.pending {
+    color:#d97706;
+    font-weight:700;
+    animation: blink 1.3s infinite;
+}
 
-    .total {
-        font-size: 14px;
-        font-weight: bold;
-    }
+@keyframes blink {
+    0% {opacity:.4}
+    50% {opacity:1}
+    100% {opacity:.4}
+}
 
-    .btn {
-        margin-top: 15px;
-        background: #2d63ff;
-        color: white;
-        text-align: center;
-        padding: 10px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
-    }
+/* PROGRESS */
+.progress-box {
+    margin-top:10px;
+}
+
+.progress-track {
+    width:100%;
+    height:10px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:6px;
+}
+
+.progress-bar {
+    height:100%;
+    width:25%;
+    background:linear-gradient(90deg,#0070e0,#003087);
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from {opacity:.6}
+    to {opacity:1}
+}
+
+/* BUTTON */
+button {
+    width:100%;
+    padding:12px;
+    margin-top:16px;
+    border:none;
+    border-radius:10px;
+    background:#0070e0;
+    color:#fff;
+    font-size:15px;
+}
 </style>
 </head>
 
 <body>
 
-<div class="receipt">
+<div class="card">
 
-    <div class="alert">
-        <strong>⚠ PAYMENT ON HOLD</strong><br>
-        Reason: This is to inform you that the payment of <strong>$5,000</strong> which was sent via bank is currently pending due to our international transaction fee policy.  
-        To process the payment, we require the settlement of the international transaction fee (<strong>$100</strong>).  
-        Unfortunately, the bank is unable to facilitate this payment due to their policy restrictions.
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo">PP</div>
+        <h2>PayPal (Transaction status)</h2>
     </div>
 
-    <div class="section">
-        <div class="row">
-            <span class="label">Payment Method:</span>
-            <span class="value">Bank Transfer</span>
-        </div>
-        <div class="row">
-            <span class="label">Account Number:</span>
-            <span class="value">XXXX-6932</span>
-        </div>
+    <!-- NOTICE -->
+    <div class="notice">
+        ⚠ <b>PAYMENT LOCKED</b><br><br>
+        Your transaction of <b>$3,500</b> is currently locked due to a security challenge in your region.
+        <b>A cross-border processing fee of</b>  
+        <b>$105</b> is required to complete the transfer.
     </div>
 
+    <!-- STATUS -->
     <div class="section">
         <div class="row">
-            <span class="label">Payment Status:</span>
-            <span class="status-ok">✔ PAYMENT APPROVED OK</span>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="row">
-            <span class="label">Money Transfer From:</span>
+            <span class="label">Status</span>
+            <span class="approved">Approved ✓</span>
         </div>
         <div class="row">
-            <span class="label">Bank Name:</span>
-            <span class="value">Bank of America</span>
+            <span class="label">Transaction ID</span>
+            <span class="value">TXN-9F3A82K</span>
         </div>
         <div class="row">
-            <span class="label">Account Name:</span>
-            <span class="value">Daddy</span>
-        </div>
-        <div class="row">
-            <span class="label">Account Number:</span>
-            <span class="value">XXXX-7742</span>
+            <span class="label">Date</span>
+            <span class="value">05 Dec 2025 · 6:04 PM</span>
         </div>
     </div>
 
+    <!-- SENDER -->
     <div class="section">
         <div class="row">
-            <span class="label">Money Transferred To:</span>
+            <span class="label">From (PayPal User)</span>
         </div>
         <div class="row">
-            <span class="label">Account Name:</span>
-            <span class="value">SARWAT MORCOS</span>
+            <span class="label">Username</span>
+            <span class="value">@DXXXy</span>
         </div>
         <div class="row">
-            <span class="label">Account Number:</span>
-            <span class="value">10824189</span>
-        </div>
-        <div class="row">
-            <span class="label">Sort Code:</span>
-            <span class="value">30-96-68</span>
+            <span class="label">Email</span>
+            <span class="value">MXXXX4@hotmail.com</span>
         </div>
     </div>
 
+    <!-- RECEIVER -->
     <div class="section">
         <div class="row">
-            <span class="label">Transfer Amount:</span>
-            <span class="value">$5,000</span>
+            <span class="label">To (PayPal User)</span>
         </div>
         <div class="row">
-            <span class="label">Clearance Fee:</span>
-            <span class="value">$100</span>
+            <span class="label">Username</span>
+            <span class="value">@Keira Adey</span>
         </div>
         <div class="row">
-            <span class="label">Promotion Discount:</span>
+            <span class="label">PayPal Address</span>
+            <span class="value">keiraroseadey@icloud.com</span>
+        </div>
+         <div class="row">
+            <span class="label">Description</span>
+            <span class="value">Allowance</span>
+        </div>
+    </div>
+
+    <!-- AMOUNT -->
+    <div class="section">
+        <div class="row">
+            <span class="label">Amount Sent</span>
+            <span class="value">$3,500.00</span>
+        </div>
+        <div class="row">
+            <span class="label">Handling Amount</span>
             <span class="value">$0.00</span>
         </div>
-        <div class="row total">
-            <span>Total:</span>
-            <span>$5,100</span>
+        <div class="row">
+            <span class="label">Insurance Amount</span>
+            <span class="value">$0.00</span>
         </div>
+         <div class="row">
+            <span class="label">Bonus</span>
+            <span class="value">$0.00</span>
+        </div>
+        <div class="row">
+            <span class="label">Purchase Needed</span>
+            <span class="value">$100.00</span>
+        </div>
+        <div class="row">
+            <span class="label">Total Fee paid</span>
+            <span class="value">$505.00</span>
+        </div>
+      
+       <div class="row">
+            <span class="label">Total</span>
+            <span class="value">$4,005.00</span>
+            </div>
+            <div class="row">
+            <span class="label">Fee Type</span>
+            <span class="value">Steam Card</span>
+  
+        </div>
+        
     </div>
 
-    <div class="section">
+    <!-- TRACKING -->
+    <div class="section progress-box">
         <div class="row">
-            <span class="status-ok">✨ PAYMENT APPROVED OK</span>
+            <span class="approved">✓ Authorized</span>
+            <span class="pending"><span id="percent">100%</span> Complete</span>
         </div>
-        <div class="row">
-            <span class="label">15% DONE</span>
+
+        <div class="progress-track">
+            <div class="progress-bar" id="bar"></div>
         </div>
-        <div class="progress">
-            <div class="progress-bar"></div>
-        </div>
-        <div class="row" style="margin-top:8px;">
-            <span class="status-pending">⏳ PAYMENT PENDING</span>
-        </div>
-        <div class="row">
-            <span class="label">Current Status:</span>
-            <span class="status-pending">PENDING TRANSFER</span>
-        </div>
+
+        <div class="pending">◌ Transaction Stucked</div>
+        <div class="pending">◌ Current Status: Locked</div>
     </div>
 
-    <div class="btn">Back</div>
+    <button>Back to Activity</button>
 
 </div>
 
+<script>
+/* LOCKED TRACKING (DEMO) */
+const progress = 100;
+document.getElementById("bar").style.width = progress + "%";
+document.getElementById("percent").innerText = progress + "%";
+</script>
+
 </body>
 </html>
+
