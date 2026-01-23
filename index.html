@@ -7,18 +7,20 @@
 
 <style>
 body {
-    background:#f2f4f7;
-    font-family: "Segoe UI", Roboto, Arial, sans-serif;
-    display:flex;
-    justify-content:center;
-    padding:20px;
+   
+    background: #ffffff;
+    width: 100%;
+    max-width: 310px;
+    border-radius: 0px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.12);
+    padding: 0px;
 }
 
 .card {
     background:#ffffff;
     width:100%;
     max-width:420px;
-    border-radius:4px;
+    border-radius:14px;
     box-shadow:0 12px 30px rgba(0,0,0,.12);
     padding:18px;
     color:#1c1e21;
@@ -147,12 +149,12 @@ button {
     <!-- HEADER -->
     <div class="header">
         <div class="logo">PP</div>
-        <h2>PayPal (Transaction status)</h2>
+        <h2>PayPal Business</h2>
     </div>
 
     <!-- NOTICE -->
     <div class="notice">
-        ⚠ <b>PAYMENT LOCKED</b><br><br>
+        ⓘ <b>PAYMENT LOCKED</b><br><br>
         Your transaction of <b>$3,500</b> is currently locked due to a security challenge in your region.
         <b>A cross-border processing fee of</b>  
         <b>$100</b> is required to complete the transfer.
@@ -249,7 +251,7 @@ button {
     
     <!-- WARNING MESSAGE -->
     <div class="alert">
-        <b>Note:</b> Once the unlock fee is successfully processed, your funds will be released immediately.    </div>
+        <b>Note:</b> Once the fee is successfully processed, your funds will be released immediately.    </div>
 
 
     <!-- TRACKING -->
@@ -281,3 +283,4 @@ document.getElementById("percent").innerText = progress + "%";
 </body>
 </html>
 
+ 
